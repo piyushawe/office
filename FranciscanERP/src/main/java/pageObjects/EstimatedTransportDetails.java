@@ -1,7 +1,9 @@
 package pageObjects;
 
 import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -22,15 +24,18 @@ public class EstimatedTransportDetails {
    }
    public void openEstimatedTransportDetails() throws InterruptedException
 	 {   
+	   JavascriptExecutor js = (JavascriptExecutor) dr;
+		 js.executeScript("document.body.style.zoom='90%'");
 	     WebElement menu= dr.findElement(By.xpath("//img[@src='/Images/layout/Reports.png']"));
 		 //dr.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		 Thread.sleep(6000);
 		 Actions builder= new Actions(dr);
 		 builder.moveToElement(menu).build().perform();
+		 
 		 WebElement submenu= dr.findElement(By.linkText("Transport Report"));
 		 builder.moveToElement(submenu).build().perform();
 		 //dr.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		 dr.findElement(By.linkText("Estimated Transport Details")).click();
+			 dr.findElement(By.linkText("Estimated Transport Details")).click();
 		 dr.switchTo().frame(dr.findElement(By.id("Estimated Transport Details")));
 	 }
  public void selectSchool(String sch)
