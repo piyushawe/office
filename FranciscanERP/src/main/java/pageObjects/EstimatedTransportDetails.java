@@ -24,18 +24,22 @@ public class EstimatedTransportDetails {
    }
    public void openEstimatedTransportDetails() throws InterruptedException
 	 {   
-	   JavascriptExecutor js = (JavascriptExecutor) dr;
-		 js.executeScript("document.body.style.zoom='90%'");
-	     WebElement menu= dr.findElement(By.xpath("//img[@src='/Images/layout/Reports.png']"));
+	   /*JavascriptExecutor js = (JavascriptExecutor) dr;
+		js.executeScript("document.body.style.zoom='90%'");	    */
 		 //dr.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		 Thread.sleep(6000);
 		 Actions builder= new Actions(dr);
+		 WebElement menu= dr.findElement(By.xpath("//img[@src='/Images/layout/Reports.png']"));
 		 builder.moveToElement(menu).build().perform();
-		 
-		 WebElement submenu= dr.findElement(By.linkText("Transport Report"));
-		 builder.moveToElement(submenu).build().perform();
+		 Actions builder1= new Actions(dr);
+		 //WebElement submenu= dr.findElement(By.linkText("Transport Report"));	
+		 builder1.moveToElement(dr.findElement(By.xpath(".//*[@id='form2']/div[4]/div/ul/li[8]/ul/li[18]/a"))).build().perform();
+		 //builder1.moveToElement(dr.findElement(By.linkText("Transport Report"))).build().perform();
 		 //dr.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			 dr.findElement(By.linkText("Estimated Transport Details")).click();
+		 builder1.moveToElement(dr.findElement(By.xpath(".//*[@id='form2']/div[4]/div/ul/li[8]/ul/li[18]/ul/li[6]/a"))).click().perform();
+		 //Thread.sleep(1000);
+		 //dr.findElement(By.xpath(".//*[@id='form2']/div[4]/div/ul/li[8]/ul/li[18]/ul/li[6]/a")).click();
+			 //dr.findElement(By.linkText("Estimated Transport Details")).click();
 		 dr.switchTo().frame(dr.findElement(By.id("Estimated Transport Details")));
 	 }
  public void selectSchool(String sch)
